@@ -1,8 +1,8 @@
 //
-//  TriangleUIView.h
+//  VHCircleView.h
 //  Task6
 //
-//  Created by Vasil' on 6/19/20.
+//  Created by Vasil' on 6/20/20.
 //  Copyright © 2020 Vasil'. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TriangleUIView : UIView
+@interface VHCircleView : UIView
 
 @end
 

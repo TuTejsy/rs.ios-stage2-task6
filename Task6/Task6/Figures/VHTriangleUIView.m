@@ -11,8 +11,6 @@
 
 @interface VHTriangleUIView ()
 
-@property (nonatomic, strong) CAShapeLayer *colorDotLayer;
-
 @end
 
 @implementation VHTriangleUIView

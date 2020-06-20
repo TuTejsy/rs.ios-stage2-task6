@@ -14,7 +14,9 @@
 		E913EAA9249D42610069F0D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EAA8249D42610069F0D7 /* main.m */; };
 		E913EAB5249D47DC0069F0D7 /* VHColors.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EAB0249D47DC0069F0D7 /* VHColors.m */; };
 		E913EAB6249D47DC0069F0D7 /* VHConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EAB1249D47DC0069F0D7 /* VHConstants.m */; };
-		E913EABA249D5B350069F0D7 /* TriangleUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EAB9249D5B350069F0D7 /* TriangleUIView.m */; };
+		E913EABA249D5B350069F0D7 /* VHTriangleUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EAB9249D5B350069F0D7 /* VHTriangleUIView.m */; };
+		E913EABD249E21010069F0D7 /* VHCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EABC249E21010069F0D7 /* VHCircleView.m */; };
+		E913EAC0249E21100069F0D7 /* VHSquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EABF249E21100069F0D7 /* VHSquareView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +33,12 @@
 		E913EAB1249D47DC0069F0D7 /* VHConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHConstants.m; sourceTree = "<group>"; };
 		E913EAB2249D47DC0069F0D7 /* VHConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHConstants.h; sourceTree = "<group>"; };
 		E913EAB3249D47DC0069F0D7 /* VHColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VHColors.h; sourceTree = "<group>"; };
-		E913EAB8249D5B350069F0D7 /* TriangleUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TriangleUIView.h; sourceTree = "<group>"; };
-		E913EAB9249D5B350069F0D7 /* TriangleUIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TriangleUIView.m; sourceTree = "<group>"; };
+		E913EAB8249D5B350069F0D7 /* VHTriangleUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHTriangleUIView.h; sourceTree = "<group>"; };
+		E913EAB9249D5B350069F0D7 /* VHTriangleUIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHTriangleUIView.m; sourceTree = "<group>"; };
+		E913EABB249E21010069F0D7 /* VHCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHCircleView.h; sourceTree = "<group>"; };
+		E913EABC249E21010069F0D7 /* VHCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHCircleView.m; sourceTree = "<group>"; };
+		E913EABE249E21100069F0D7 /* VHSquareView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHSquareView.h; sourceTree = "<group>"; };
+		E913EABF249E21100069F0D7 /* VHSquareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHSquareView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,13 +71,12 @@
 		E913EA95249D42590069F0D7 /* Task6 */ = {
 			isa = PBXGroup;
 			children = (
-				E913EAAF249D47DC0069F0D7 /* Constants */,
 				E913EA96249D42590069F0D7 /* AppDelegate.h */,
 				E913EA97249D42590069F0D7 /* AppDelegate.m */,
 				E913EA9C249D42590069F0D7 /* VHStartViewController.h */,
 				E913EA9D249D42590069F0D7 /* VHStartViewController.m */,
-				E913EAB8249D5B350069F0D7 /* TriangleUIView.h */,
-				E913EAB9249D5B350069F0D7 /* TriangleUIView.m */,
+				E913EAAF249D47DC0069F0D7 /* Constants */,
+				E913EAC1249E227B0069F0D7 /* Figures */,
 				E913EAA2249D42600069F0D7 /* Assets.xcassets */,
 				E913EAA4249D42600069F0D7 /* LaunchScreen.storyboard */,
 				E913EAA7249D42610069F0D7 /* Info.plist */,
@@ -89,6 +94,19 @@
 				E913EAB2249D47DC0069F0D7 /* VHConstants.h */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		E913EAC1249E227B0069F0D7 /* Figures */ = {
+			isa = PBXGroup;
+			children = (
+				E913EAB8249D5B350069F0D7 /* VHTriangleUIView.h */,
+				E913EAB9249D5B350069F0D7 /* VHTriangleUIView.m */,
+				E913EABB249E21010069F0D7 /* VHCircleView.h */,
+				E913EABC249E21010069F0D7 /* VHCircleView.m */,
+				E913EABE249E21100069F0D7 /* VHSquareView.h */,
+				E913EABF249E21100069F0D7 /* VHSquareView.m */,
+			);
+			path = Figures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,10 +180,12 @@
 			files = (
 				E913EA9E249D42590069F0D7 /* VHStartViewController.m in Sources */,
 				E913EAB5249D47DC0069F0D7 /* VHColors.m in Sources */,
-				E913EABA249D5B350069F0D7 /* TriangleUIView.m in Sources */,
+				E913EABA249D5B350069F0D7 /* VHTriangleUIView.m in Sources */,
+				E913EAC0249E21100069F0D7 /* VHSquareView.m in Sources */,
 				E913EA98249D42590069F0D7 /* AppDelegate.m in Sources */,
 				E913EAB6249D47DC0069F0D7 /* VHConstants.m in Sources */,
 				E913EAA9249D42610069F0D7 /* main.m in Sources */,
+				E913EABD249E21010069F0D7 /* VHCircleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
