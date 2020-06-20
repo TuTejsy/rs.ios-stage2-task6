@@ -30,7 +30,6 @@
     VHStartViewController *viewController = [[VHStartViewController alloc] init];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    navigationController.navigationBarHidden = YES;
     
     return navigationController;
 }

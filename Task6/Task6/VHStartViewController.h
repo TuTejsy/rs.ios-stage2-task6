@@ -10,6 +10,5 @@
 
 @interface VHStartViewController : UIViewController
 
-
 @end
 
