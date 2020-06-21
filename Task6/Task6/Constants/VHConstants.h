@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSInteger const TABLE_CELL_HEIGHT;
 extern NSInteger const FIGURE_SIZE;
 
 NS_ASSUME_NONNULL_END

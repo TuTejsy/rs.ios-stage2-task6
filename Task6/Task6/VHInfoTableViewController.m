@@ -6,9 +6,16 @@
 //  Copyright © 2020 Vasil'. All rights reserved.
 //
 
+#import <Photos/Photos.h>
+#import "VHConstants.h"
+#import "VHColors.h"
 #import "VHInfoTableViewController.h"
+#import "VHTableViewCell.h"
 
 @interface VHInfoTableViewController ()
+
+@property(nonatomic, strong) PHFetchResult *assetsFetchResults;
+@property(nonatomic, strong) PHCachingImageManager *imageManager;
 
 @end
 
@@ -16,45 +23,65 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     self.tabBarController.navigationItem.title = @"Info";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self updateAssets];
     [self setupViews];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(updateTable)
+        name:@"appDidBecomeActive"
+      object:nil];
 }
 
 - (void)setupViews {
-    
+    UINib *nib = [UINib nibWithNibName:@"VHTableViewCell" bundle:nil];
+    [self.tableView registerNib: nib forCellReuseIdentifier:@"infoCell"];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+}
+
+- (void)updateAssets {
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    _assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+    _imageManager = [[PHCachingImageManager alloc] init];
+}
+
+-(void)updateTable {
+    [self updateAssets];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [_assetsFetchResults count];;
 }
 
-/*
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return TABLE_CELL_HEIGHT;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    VHTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
+    PHAsset *asset = _assetsFetchResults[indexPath.item];
+    cell.asset = asset;
     
-    // Configure the cell...
+    [_imageManager requestImageForAsset:asset targetSize:CGSizeMake(50, 50) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *result, NSDictionary *info) {
+        cell.image = result;
+    }];
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

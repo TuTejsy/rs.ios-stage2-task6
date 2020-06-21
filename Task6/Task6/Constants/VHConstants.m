@@ -8,4 +8,5 @@
 
 #import "VHConstants.h"
 
+NSInteger const TABLE_CELL_HEIGHT = 80;
 NSInteger const FIGURE_SIZE = 70;

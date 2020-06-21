@@ -33,4 +33,8 @@
     return navigationController;
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"appDidBecomeActive" object:nil];
+}
+
 @end

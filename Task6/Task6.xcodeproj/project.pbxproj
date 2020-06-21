@@ -18,10 +18,11 @@
 		E913EABD249E21010069F0D7 /* VHCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EABC249E21010069F0D7 /* VHCircleView.m */; };
 		E913EAC0249E21100069F0D7 /* VHSquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EABF249E21100069F0D7 /* VHSquareView.m */; };
 		E913EAC5249E25300069F0D7 /* VHInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EAC3249E25300069F0D7 /* VHInfoTableViewController.m */; };
-		E913EAC6249E25300069F0D7 /* VHInfoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E913EAC4249E25300069F0D7 /* VHInfoTableViewController.xib */; };
 		E913EACA249E25540069F0D7 /* VHGalleryCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EAC8249E25540069F0D7 /* VHGalleryCollectionViewController.m */; };
 		E913EACB249E25540069F0D7 /* VHGalleryCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E913EAC9249E25540069F0D7 /* VHGalleryCollectionViewController.xib */; };
 		E913EACE249E25780069F0D7 /* VHHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E913EACD249E25780069F0D7 /* VHHomeViewController.m */; };
+		E9BF902C249F9AD900407A17 /* VHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BF902A249F9AD900407A17 /* VHTableViewCell.m */; };
+		E9BF902D249F9AD900407A17 /* VHTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BF902B249F9AD900407A17 /* VHTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,12 +47,14 @@
 		E913EABF249E21100069F0D7 /* VHSquareView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHSquareView.m; sourceTree = "<group>"; };
 		E913EAC2249E25300069F0D7 /* VHInfoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHInfoTableViewController.h; sourceTree = "<group>"; };
 		E913EAC3249E25300069F0D7 /* VHInfoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHInfoTableViewController.m; sourceTree = "<group>"; };
-		E913EAC4249E25300069F0D7 /* VHInfoTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VHInfoTableViewController.xib; sourceTree = "<group>"; };
 		E913EAC7249E25540069F0D7 /* VHGalleryCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHGalleryCollectionViewController.h; sourceTree = "<group>"; };
 		E913EAC8249E25540069F0D7 /* VHGalleryCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHGalleryCollectionViewController.m; sourceTree = "<group>"; };
 		E913EAC9249E25540069F0D7 /* VHGalleryCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VHGalleryCollectionViewController.xib; sourceTree = "<group>"; };
 		E913EACC249E25780069F0D7 /* VHHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHHomeViewController.h; sourceTree = "<group>"; };
 		E913EACD249E25780069F0D7 /* VHHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHHomeViewController.m; sourceTree = "<group>"; };
+		E9BF9029249F9AD900407A17 /* VHTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHTableViewCell.h; sourceTree = "<group>"; };
+		E9BF902A249F9AD900407A17 /* VHTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHTableViewCell.m; sourceTree = "<group>"; };
+		E9BF902B249F9AD900407A17 /* VHTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VHTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +93,9 @@
 				E913EA9D249D42590069F0D7 /* VHStartViewController.m */,
 				E913EAC2249E25300069F0D7 /* VHInfoTableViewController.h */,
 				E913EAC3249E25300069F0D7 /* VHInfoTableViewController.m */,
-				E913EAC4249E25300069F0D7 /* VHInfoTableViewController.xib */,
+				E9BF9029249F9AD900407A17 /* VHTableViewCell.h */,
+				E9BF902A249F9AD900407A17 /* VHTableViewCell.m */,
+				E9BF902B249F9AD900407A17 /* VHTableViewCell.xib */,
 				E913EAC7249E25540069F0D7 /* VHGalleryCollectionViewController.h */,
 				E913EAC8249E25540069F0D7 /* VHGalleryCollectionViewController.m */,
 				E913EAC9249E25540069F0D7 /* VHGalleryCollectionViewController.xib */,
@@ -187,9 +192,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E913EAC6249E25300069F0D7 /* VHInfoTableViewController.xib in Resources */,
 				E913EAA6249D42600069F0D7 /* LaunchScreen.storyboard in Resources */,
 				E913EAA3249D42600069F0D7 /* Assets.xcassets in Resources */,
+				E9BF902D249F9AD900407A17 /* VHTableViewCell.xib in Resources */,
 				E913EACB249E25540069F0D7 /* VHGalleryCollectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E913EA9E249D42590069F0D7 /* VHStartViewController.m in Sources */,
+				E9BF902C249F9AD900407A17 /* VHTableViewCell.m in Sources */,
 				E913EAB5249D47DC0069F0D7 /* VHColors.m in Sources */,
 				E913EABA249D5B350069F0D7 /* VHTriangleUIView.m in Sources */,
 				E913EACA249E25540069F0D7 /* VHGalleryCollectionViewController.m in Sources */,
