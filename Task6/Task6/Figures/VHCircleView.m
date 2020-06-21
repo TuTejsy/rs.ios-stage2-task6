@@ -8,6 +8,10 @@
 
 #import "VHCircleView.h"
 
+@interface VHCircleView ()
+
+@end
+
 @implementation VHCircleView
 
 -(void)layoutSubviews{
@@ -18,17 +22,19 @@
 }
 
 - (void)pulseCircle {
-    [UIView animateWithDuration:0.8 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.transform = CGAffineTransformMakeScale(0.9, 0.9);
-    }completion:^(BOOL finished){
-        [UIView animateWithDuration:1.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            self.transform = CGAffineTransformMakeScale(1.1, 1.1);
-            
-        } completion:^(BOOL finished){
-            [self pulseCircle];
-        }
-         ];
-    }];
+    [self.layer removeAnimationForKey:@"scale"];
+    
+    CAKeyframeAnimation *scaleAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.duration = 3;
+    scaleAnimation.repeatCount = INFINITY;
+    scaleAnimation.removedOnCompletion = NO;
+    scaleAnimation.values = @[@0.9, @1.1, @0.9];
+    scaleAnimation.keyTimes = @[@0, @0.333, @1];
+    scaleAnimation.timingFunctions = @[
+        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
+        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+    ];
+    [self.layer addAnimation:scaleAnimation forKey:@"scale"];
 }
 
 @end

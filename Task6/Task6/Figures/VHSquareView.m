@@ -8,6 +8,10 @@
 
 #import "VHSquareView.h"
 
+@interface VHSquareView ()
+
+@end
+
 @implementation VHSquareView
 
 -(void) layoutSubviews {
@@ -17,16 +21,23 @@
 }
 
 - (void)moveSquare {
-    [UIView animateWithDuration:0.7 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.transform = CGAffineTransformMakeTranslation(0, -(self.bounds.size.height / 10));
-    }completion:^(BOOL finished){
-        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-            self.transform = CGAffineTransformMakeTranslation(0, (self.bounds.size.height / 10));
-        } completion:^(BOOL finished){
-            [self moveSquare];
-        }
-         ];
-    }];
+    [self.layer removeAnimationForKey:@"transition"];
+    
+    CAKeyframeAnimation *transitionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
+    transitionAnimation.duration = 2;
+    transitionAnimation.repeatCount = INFINITY;
+    transitionAnimation.removedOnCompletion = NO;
+    transitionAnimation.values = @[
+        @(-(self.bounds.size.height / 10)),
+        @((self.bounds.size.height / 10)),
+        @(-(self.bounds.size.height / 10)),
+    ];
+    transitionAnimation.keyTimes = @[@0, @0.4, @1];
+    transitionAnimation.timingFunctions = @[
+        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
+        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+    ];
+    [self.layer addAnimation:transitionAnimation forKey:@"transition"];
 }
 
 @end

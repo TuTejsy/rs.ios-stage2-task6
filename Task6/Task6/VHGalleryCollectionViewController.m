@@ -16,6 +16,11 @@
 
 static NSString * const reuseIdentifier = @"Cell";
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tabBarController.navigationItem.title = @"Gallery";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations

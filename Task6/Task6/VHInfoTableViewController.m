@@ -14,6 +14,11 @@
 
 @implementation VHInfoTableViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tabBarController.navigationItem.title = @"Info";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -26,6 +31,7 @@
 }
 
 - (void)setupViews {
+    
 }
 
 #pragma mark - Table view data source

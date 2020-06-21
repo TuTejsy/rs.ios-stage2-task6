@@ -9,13 +9,15 @@
 #import "VHTriangleUIView.h"
 #import "VHColors.h"
 
+static NSInteger imgAngle = 0;
+
 @interface VHTriangleUIView ()
 
 @end
 
 @implementation VHTriangleUIView
 
--(void)layoutSubviews{
+- (void)layoutSubviews{
     [super layoutSubviews];
 
     [self rotateTriangle];
@@ -35,13 +37,23 @@
 }
 
 - (void)rotateTriangle {
-    [UIView animateWithDuration:3 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        [self setTransform:CGAffineTransformRotate(self.transform, M_PI_2)];
-    }completion:^(BOOL finished){
-        if (finished) {
-            [self rotateTriangle];
-        }
-    }];
+    [self.layer removeAnimationForKey:@"rotation"];
+    
+    CABasicAnimation *rotateAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    
+    rotateAnimation.duration = 5;
+    rotateAnimation.additive = YES;
+    rotateAnimation.removedOnCompletion = NO;
+    rotateAnimation.fillMode = kCAFillModeForwards;
+    rotateAnimation.repeatCount = INFINITY;
+    rotateAnimation.fromValue = [NSNumber numberWithFloat:(imgAngle * M_PI / 180)];
+    rotateAnimation.toValue = [NSNumber numberWithFloat:((imgAngle + 360) * M_PI / 180)];
+    [self.layer addAnimation:rotateAnimation forKey:@"rotation"];
+    
+    imgAngle += 90;
+    if (imgAngle > 360) {
+        imgAngle = 0;
+    }
 }
 
 @end

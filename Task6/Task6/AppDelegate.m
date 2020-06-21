@@ -17,7 +17,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     window.rootViewController = [self rootViewController];
     
@@ -33,6 +32,5 @@
     
     return navigationController;
 }
-
 
 @end

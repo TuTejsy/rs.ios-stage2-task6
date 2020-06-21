@@ -8,3 +8,4 @@
 
 #import "VHConstants.h"
 
+NSInteger const FIGURE_SIZE = 70;
