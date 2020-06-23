@@ -31,6 +31,10 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    
+    if (selected) {
+        [self.delegate showFileInfoForAsset: _asset];
+    }
 }
 
 - (void)prepareForReuse {

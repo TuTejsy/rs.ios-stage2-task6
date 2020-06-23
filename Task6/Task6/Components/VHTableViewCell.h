@@ -11,10 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol VHTableViewCellDelegate
+
+-(void)showFileInfoForAsset: (PHAsset *) asset;
+
+@end
+
 @interface VHTableViewCell : UITableViewCell
 
 @property(nonatomic, copy) UIImage *image;
 @property(nonatomic, copy) PHAsset *asset;
+@property(nonatomic, weak) NSObject<VHTableViewCellDelegate> *delegate;
 
 @end
 

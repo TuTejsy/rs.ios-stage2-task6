@@ -25,6 +25,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+//    [self.tabBarController.navigationController.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width,100.0)];
     self.tabBarController.navigationItem.title = @"RSSchool Task 6";
 }
 
