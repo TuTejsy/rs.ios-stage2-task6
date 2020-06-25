@@ -19,9 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VHTableViewCell : UITableViewCell
 
-@property(nonatomic, copy) UIImage *image;
-@property(nonatomic, copy) PHAsset *asset;
+@property(nonatomic, strong) UIImage *image;
+@property(nonatomic, strong) PHAsset *asset;
 @property(nonatomic, weak) NSObject<VHTableViewCellDelegate> *delegate;
+
+
 
 @end
 

@@ -39,11 +39,10 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    
-    self.imageView.image = nil;
-    _nameLabel.text = nil;
-    _sizeLabel.text = nil;
-    _typeImageView.image = nil;
+
+    self.nameLabel.text = @"";
+    self.sizeLabel.text = @"";
+    self.typeImageView.image = nil;
 }
 
 - (void)setImage:(UIImage *)image {
@@ -53,12 +52,18 @@
 
 - (void)setAsset:(PHAsset *)asset {
     _asset = asset;
-    NSArray *resources = [PHAssetResource assetResourcesForAsset:_asset];
-    PHAssetResource* resource = resources[0];
+    typeof(self) __weak weakSelf = self;
     
-    _nameLabel.text = resource.originalFilename;
-    [self setInfoForType: resource.type];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSArray *resources = [PHAssetResource assetResourcesForAsset:weakSelf.asset];
+        
+        if ([resources count] > 0) {
+            PHAssetResource* resource = resources[0];
+            
+            weakSelf.nameLabel.text = resource.originalFilename;
+            [weakSelf setInfoForType: resource.type];
+        }
+    });
 }
 
 - (void)setInfoForType: (PHAssetResourceType) type {

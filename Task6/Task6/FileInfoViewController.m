@@ -37,6 +37,8 @@ static NSInteger const SCROLL_VIEW_PADDING = 16;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
+    
     self.navigationItem.title = _resource.originalFilename;
 }
 
@@ -69,8 +71,10 @@ static NSInteger const SCROLL_VIEW_PADDING = 16;
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCROLL_VIEW_PADDING, SCROLL_VIEW_PADDING,  self.view.bounds.size.width - 2 * SCROLL_VIEW_PADDING, _asset.pixelHeight * sizeFactor)];
     [scrollView addSubview:_imageView];
     
-    [_imageManager requestImageForAsset:_asset targetSize:CGSizeMake(_asset.pixelWidth, _asset.pixelHeight) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *result, NSDictionary *info) {
-        self.imageView.image = result;
+    [_imageManager requestImageForAsset:_asset targetSize:CGSizeMake(_asset.pixelWidth, _asset.pixelHeight) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *image, NSDictionary *info) {
+        if (image) {
+            self.imageView.image = image;
+        }
     }];
     
     
@@ -159,10 +163,14 @@ static NSInteger const SCROLL_VIEW_PADDING = 16;
     [self shareFileOfResourceType:_resource.type];
 }
 
+- (void)backButtonPressed {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) shareFileOfResourceType: (PHAssetResourceType) type {
     NSMutableArray *activityItems = [NSMutableArray array];
     PHImageRequestOptions *options = [[PHImageRequestOptions alloc] init];
-     typeof(self) __weak weakSelf = self;
+    typeof(self) __weak weakSelf = self;
     
     if (type == PHAssetResourceTypeVideo) {
         [_imageManager requestExportSessionForVideo: _asset options:nil exportPreset:AVAssetExportPresetPassthrough resultHandler:^(AVAssetExportSession *exportSession, NSDictionary *info) {

@@ -23,6 +23,8 @@
 		E9BF902C249F9AD900407A17 /* VHTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BF902A249F9AD900407A17 /* VHTableViewCell.m */; };
 		E9BF902D249F9AD900407A17 /* VHTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BF902B249F9AD900407A17 /* VHTableViewCell.xib */; };
 		E9BF903724A1058B00407A17 /* FileInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BF903624A1058B00407A17 /* FileInfoViewController.m */; };
+		E9BF903E24A2895600407A17 /* VHCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BF903C24A2895600407A17 /* VHCollectionViewCell.m */; };
+		E9BF903F24A2895600407A17 /* VHCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BF903D24A2895600407A17 /* VHCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,9 @@
 		E9BF902B249F9AD900407A17 /* VHTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VHTableViewCell.xib; sourceTree = "<group>"; };
 		E9BF903524A1058B00407A17 /* FileInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileInfoViewController.h; sourceTree = "<group>"; };
 		E9BF903624A1058B00407A17 /* FileInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileInfoViewController.m; sourceTree = "<group>"; };
+		E9BF903B24A2895600407A17 /* VHCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VHCollectionViewCell.h; sourceTree = "<group>"; };
+		E9BF903C24A2895600407A17 /* VHCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VHCollectionViewCell.m; sourceTree = "<group>"; };
+		E9BF903D24A2895600407A17 /* VHCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VHCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +143,9 @@
 		E9BF9031249FEA6200407A17 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E9BF903B24A2895600407A17 /* VHCollectionViewCell.h */,
+				E9BF903C24A2895600407A17 /* VHCollectionViewCell.m */,
+				E9BF903D24A2895600407A17 /* VHCollectionViewCell.xib */,
 				E9BF9029249F9AD900407A17 /* VHTableViewCell.h */,
 				E9BF902A249F9AD900407A17 /* VHTableViewCell.m */,
 				E9BF902B249F9AD900407A17 /* VHTableViewCell.xib */,
@@ -204,6 +212,7 @@
 			files = (
 				E913EAA6249D42600069F0D7 /* LaunchScreen.storyboard in Resources */,
 				E913EAA3249D42600069F0D7 /* Assets.xcassets in Resources */,
+				E9BF903F24A2895600407A17 /* VHCollectionViewCell.xib in Resources */,
 				E9BF902D249F9AD900407A17 /* VHTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +230,7 @@
 				E913EABA249D5B350069F0D7 /* VHTriangleUIView.m in Sources */,
 				E913EACA249E25540069F0D7 /* VHGalleryCollectionViewController.m in Sources */,
 				E913EAC0249E21100069F0D7 /* VHSquareView.m in Sources */,
+				E9BF903E24A2895600407A17 /* VHCollectionViewCell.m in Sources */,
 				E913EACE249E25780069F0D7 /* VHHomeViewController.m in Sources */,
 				E913EA98249D42590069F0D7 /* AppDelegate.m in Sources */,
 				E913EAB6249D47DC0069F0D7 /* VHConstants.m in Sources */,
@@ -360,6 +370,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6PS5CBNN65;
 				INFOPLIST_FILE = Task6/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -377,6 +388,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6PS5CBNN65;
 				INFOPLIST_FILE = Task6/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

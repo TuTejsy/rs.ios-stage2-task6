@@ -30,6 +30,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     self.tabBarController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
 }
 
@@ -69,7 +70,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_assetsFetchResults count];;
+    return [_assetsFetchResults count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -79,12 +80,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VHTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
-    PHAsset *asset = _assetsFetchResults[indexPath.item];
+    PHAsset *asset = _assetsFetchResults[indexPath.row];
     cell.asset = asset;
     cell.delegate = self;
     
-    [_imageManager requestImageForAsset:asset targetSize:CGSizeMake(76, 76) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *result, NSDictionary *info) {
-        cell.image = result;
+    [_imageManager requestImageForAsset:asset targetSize:CGSizeMake(76, 76) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *image, NSDictionary *info) {
+        if (image) {
+            cell.image = image;
+        }
     }];
     
     return cell;

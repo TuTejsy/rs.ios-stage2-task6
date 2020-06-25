@@ -49,11 +49,11 @@
                     <constraint firstAttribute="bottom" secondItem="cQr-tr-H5e" secondAttribute="bottom" constant="17" id="Geb-rC-f16"/>
                     <constraint firstItem="gAt-VW-y1i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="IWe-7l-NbF"/>
                     <constraint firstItem="gAt-VW-y1i" firstAttribute="leading" secondItem="mcL-h6-DO3" secondAttribute="trailing" constant="16" id="LG4-EF-2oD"/>
-                    <constraint firstItem="mcL-h6-DO3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="XF1-xB-l2D"/>
                     <constraint firstAttribute="trailing" secondItem="cQr-tr-H5e" secondAttribute="trailing" constant="16" id="aei-hy-Oha"/>
                     <constraint firstItem="cQr-tr-H5e" firstAttribute="leading" secondItem="YNq-fI-uwA" secondAttribute="trailing" constant="5" id="fii-eN-OGE"/>
                     <constraint firstAttribute="bottom" secondItem="YNq-fI-uwA" secondAttribute="bottom" constant="15" id="hOQ-b4-Jbn"/>
                     <constraint firstAttribute="bottom" secondItem="mcL-h6-DO3" secondAttribute="bottom" constant="2" id="k85-iG-Dx0"/>
+                    <constraint firstItem="mcL-h6-DO3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="kPP-Yo-4pa"/>
                     <constraint firstItem="YNq-fI-uwA" firstAttribute="leading" secondItem="mcL-h6-DO3" secondAttribute="trailing" constant="16" id="ltU-mt-wTi"/>
                     <constraint firstItem="mcL-h6-DO3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="rTI-f7-axI"/>
                 </constraints>

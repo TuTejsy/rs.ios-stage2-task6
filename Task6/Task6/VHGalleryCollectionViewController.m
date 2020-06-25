@@ -6,96 +6,158 @@
 //  Copyright © 2020 Vasil'. All rights reserved.
 //
 
+#import <Photos/Photos.h>
 #import "VHGalleryCollectionViewController.h"
+#import "VHColors.h"
+#import "VHCollectionViewCell.h"
 
-@interface VHGalleryCollectionViewController ()
+@interface VHGalleryCollectionViewController () <UICollectionViewDelegateFlowLayout>
+
+@property(nonatomic, strong) PHFetchResult *assetsFetchResults;
+@property(nonatomic, strong) UIImageView *fullImageView;
+@property(nonatomic, strong) PHCachingImageManager *imageManager;
 
 @end
 
 @implementation VHGalleryCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSInteger const NUMBER_OF_COLUMNS = 3;
+static NSString * const REUSE_IDENTIFIER = @"galleryCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     self.tabBarController.navigationItem.title = @"Gallery";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    UINib *nib = [UINib nibWithNibName:@"VHCollectionViewCell" bundle:nil];
+    [self.collectionView registerNib:nib forCellWithReuseIdentifier:REUSE_IDENTIFIER];
     
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(updateCollection)
+        name:@"appDidBecomeActive"
+      object:nil];
+    
+    [self updateAssets];
     [self setupViews];
 }
 
 - (void)setupViews {
+    self.collectionView.backgroundColor = [VHColors white];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)updateAssets {
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    _assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+    _imageManager = [[PHCachingImageManager alloc] init];
 }
-*/
+
+-(void)updateCollection {
+    [self updateAssets];
+    [self.collectionView reloadData];
+}
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return [_assetsFetchResults count] / NUMBER_OF_COLUMNS + ([_assetsFetchResults count] % NUMBER_OF_COLUMNS > 0 ? 1 : 0);
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
-    return 0;
+
+    if (section == ([_assetsFetchResults count] / NUMBER_OF_COLUMNS)) {
+        NSInteger balance = [_assetsFetchResults count] % NUMBER_OF_COLUMNS;
+        return balance > 0 ? balance : NUMBER_OF_COLUMNS;
+    }
+    
+    return NUMBER_OF_COLUMNS;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    VHCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:REUSE_IDENTIFIER forIndexPath:indexPath];
+    PHAsset *asset = _assetsFetchResults[(indexPath.section * NUMBER_OF_COLUMNS) + (indexPath.row)];
     
-    // Configure the cell
+    CGFloat size = (self.view.bounds.size.width - 3 * (NUMBER_OF_COLUMNS + 1)) / NUMBER_OF_COLUMNS;
+
+    [_imageManager requestImageForAsset:asset targetSize:CGSizeMake(size, size) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *image, NSDictionary *info) {
+        if (image) {
+            cell.image = image;
+        }
+    }];
     
     return cell;
 }
 
+#pragma mark <UICollectionViewDelegateFlowLayout>
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat size = self.collectionView.bounds.size.width / NUMBER_OF_COLUMNS - 5;
+    
+    return CGSizeMake(size, size);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
+}
+
+// Layout: Set Edges
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0,5,5,0);  // top, left, bottom, right
+}
+
+
+- (UIEdgeInsets)additionalSafeAreaInsets {
+    return UIEdgeInsetsMake(5, 0, 0, 5); // top, left, bottom, right
+}
+
 #pragma mark <UICollectionViewDelegate>
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    PHAsset *asset = _assetsFetchResults[(indexPath.section * NUMBER_OF_COLUMNS) + (indexPath.row)];
+    [self addImageView];
+    
+    typeof(self) __weak weakSelf = self;
+    
+    [_imageManager requestImageForAsset:asset targetSize:CGSizeMake(asset.pixelWidth, asset.pixelHeight) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage *image, NSDictionary *info) {
+        if (image) {
+            weakSelf.fullImageView.image = image;
+        }
+    }];
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+- (void)removeImage {
+    [_fullImageView removeFromSuperview];
+
+    self.tabBarController.tabBar.hidden = NO;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
+
+- (void)addImageView {
+    _fullImageView = [[UIImageView alloc] initWithFrame:self.navigationController.view.frame];
+    _fullImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _fullImageView.backgroundColor = [UIColor blackColor];
+    [_fullImageView setUserInteractionEnabled: YES];
+    UISwipeGestureRecognizer *dismissSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(removeImage)];
+    dismissSwipe.direction = (UISwipeGestureRecognizerDirectionDown |
+                                 UISwipeGestureRecognizerDirectionUp);
+    
+    
+    [_fullImageView addGestureRecognizer:dismissSwipe];
+    self.tabBarController.tabBar.hidden = YES;
+
+    [self.navigationController.view addSubview:_fullImageView];
 }
-*/
 
 @end
