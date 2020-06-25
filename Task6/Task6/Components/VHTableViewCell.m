@@ -11,6 +11,8 @@
 
 @interface VHTableViewCell ()
 
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *constraintsAttachedToSafeAreaTop;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *viewsAttachedToSafeAreaTop;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sizeLabel;
@@ -27,6 +29,19 @@
     selectedView.backgroundColor = [VHColors yellowHighlighted];
     self.layer.masksToBounds = YES;
     self.selectedBackgroundView = selectedView;
+    
+    if (@available(iOS 11.0, *)) {}
+    else {
+        [self.imageView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
+        
+        for (UIView *viewAttachedToSafeAreaTop in self.viewsAttachedToSafeAreaTop) {
+            [viewAttachedToSafeAreaTop.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+        }
+
+        for (NSLayoutConstraint *constraintAttachedToSafeAreaTop in self.constraintsAttachedToSafeAreaTop) {
+            constraintAttachedToSafeAreaTop.active = NO;
+        }
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

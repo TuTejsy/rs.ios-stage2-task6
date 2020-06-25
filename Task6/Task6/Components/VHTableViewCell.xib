@@ -64,6 +64,10 @@
                 <outlet property="nameLabel" destination="gAt-VW-y1i" id="r6D-8K-BRT"/>
                 <outlet property="sizeLabel" destination="cQr-tr-H5e" id="oJQ-0f-LG7"/>
                 <outlet property="typeImageView" destination="YNq-fI-uwA" id="SMR-6W-FcX"/>
+                <outletCollection property="constraintsAttachedToSafeAreaTop" destination="IWe-7l-NbF" id="ZtY-my-8Un"/>
+                <outletCollection property="constraintsAttachedToSafeAreaTop" destination="rTI-f7-axI" id="cW7-Sh-ByI"/>
+                <outletCollection property="viewsAttachedToSafeAreaTop" destination="mcL-h6-DO3" id="hhq-Iv-OJE"/>
+                <outletCollection property="viewsAttachedToSafeAreaTop" destination="gAt-VW-y1i" id="Pee-pn-Wcn"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="160.04464285714286"/>
         </tableViewCell>
